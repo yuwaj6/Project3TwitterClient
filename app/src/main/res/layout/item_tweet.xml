@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dip">
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="10dip">
 
     <ImageView
         android:layout_alignParentTop="true"
@@ -55,5 +57,7 @@
         android:layout_height="1dip"
         android:layout_below="@+id/tvBody"
         android:layout_alignParentBottom="true"
-        android:background="#e4e4e6" />
+        android:layout_marginTop="5dip"
+        android:paddingTop="5dip"
+        android:background="#cecece" />
 </RelativeLayout>

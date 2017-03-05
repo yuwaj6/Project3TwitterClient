@@ -3,6 +3,7 @@ package com.codepath.apps.simpletweets;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -27,6 +28,7 @@ public class TwitterApplication extends Application {
 		FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 
 		TwitterApplication.context = this;
+		Stetho.initializeWithDefaults(this);
 	}
 
 
