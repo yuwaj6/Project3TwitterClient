@@ -1,4 +1,4 @@
-package com.codepath.apps.simpletweets;
+package com.codepath.apps.simpletweets.Fragment;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.simpletweets.R;
+import com.codepath.apps.simpletweets.Utils;
 
 /**
  * Created by reneewu on 3/4/2017.
