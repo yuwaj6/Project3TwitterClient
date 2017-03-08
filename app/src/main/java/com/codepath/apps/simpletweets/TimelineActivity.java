@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -87,6 +89,7 @@ public class TimelineActivity extends AppCompatActivity {
 
                 currentUser = User.fromJSON(json);
                 Utils.profileImageUrl = currentUser.getProfileImageUrl();
+                Utils.screenName = currentUser.getScreenName();
             }
 
             // failure
@@ -95,6 +98,21 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("debug",errorResponse.toString());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_timeline, menu);
+        return true;
+    }
+
+
+    public void onProfileView(MenuItem mi){
+        //launch profile view
+        Intent i = new Intent(this, ProfileActivity.class);
+
+        startActivity(i);
     }
 
     // return the order of fragments

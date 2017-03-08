@@ -6,4 +6,5 @@ package com.codepath.apps.simpletweets;
 
 public class Utils {
     public static String profileImageUrl = "";
+    public static String screenName = "";
 }
