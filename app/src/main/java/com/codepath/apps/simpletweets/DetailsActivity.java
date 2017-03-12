@@ -61,7 +61,7 @@ public class DetailsActivity extends AppCompatActivity implements ComposeFragmen
         ivReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showComposeDialog(t.getUser().getScreenName(),t.getUid());
+                showComposeDialog(t.getUser().getScreenDisplayName(),t.getUid());
             }
         });
 

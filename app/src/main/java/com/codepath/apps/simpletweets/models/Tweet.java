@@ -364,6 +364,7 @@ public class Tweet {
     private User user;
     private String createdAt;
     private Entities entities;
+    private Boolean favorited;
 
     public String getBody() {
         return body;
@@ -385,6 +386,9 @@ public class Tweet {
         return entities;
     }
 
+    public Boolean getFavorited() {
+        return favorited;
+    }
     public Tweet(){}
 
     public static Tweet fromJSON(JSONObject jsonObject){
@@ -397,7 +401,7 @@ public class Tweet {
             tweet.createdAt = jsonObject.getString("created_at");
             tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
             tweet.entities = Entities.fromJSON(jsonObject.getJSONObject("entities"));
-
+            tweet.favorited = jsonObject.getBoolean("favorited");
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -19,6 +19,10 @@ public class User {
     }
 
     public String getScreenName() {
+        return screenName;
+    }
+
+    public String getScreenDisplayName() {
         return "@"+ screenName;
     }
 
@@ -31,6 +35,23 @@ public class User {
     private String screenName;
     private String profileImageUrl;
 
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    private int followersCount;
+    private int followingCount;
+    private String tagline;
+
+
     public User(){}
 
     public static User fromJSON(JSONObject jsonObject){
@@ -40,6 +61,9 @@ public class User {
             user.uid=jsonObject.getLong("id");
             user.screenName=jsonObject.getString("screen_name");
             user.profileImageUrl= jsonObject.getString("profile_image_url");
+            user.tagline= jsonObject.getString("description");
+            user.followersCount =jsonObject.getInt("followers_count");
+            user.followingCount =jsonObject.getInt("friends_count");
 
         } catch (JSONException e) {
             e.printStackTrace();

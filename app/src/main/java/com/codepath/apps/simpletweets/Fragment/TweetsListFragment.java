@@ -10,11 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.codepath.apps.simpletweets.DetailsActivity;
 import com.codepath.apps.simpletweets.EndlessRecyclerViewScrollListener;
 import com.codepath.apps.simpletweets.R;
-import com.codepath.apps.simpletweets.TweetsAdapter;
+import com.codepath.apps.simpletweets.adapter.TweetsAdapter;
 import com.codepath.apps.simpletweets.helper.ItemClickSupport;
 import com.codepath.apps.simpletweets.models.Tweet;
 
@@ -39,6 +40,8 @@ public class TweetsListFragment extends Fragment {
     private int currentPage=0;
     public SwipeRefreshLayout swipeContainer;
     public LinearLayoutManager linearLayoutManager;
+    // Store reference to the progress bar later
+    ProgressBar progressBarFooter;
 
     @Nullable
     @Override
@@ -60,6 +63,7 @@ public class TweetsListFragment extends Fragment {
                                                                 }
         );
 
+        // Set the adapter AFTER adding footer
         lvTweets.setAdapter(aTweets);
 
         // Set layout manager to position the items

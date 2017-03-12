@@ -6,8 +6,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+// Make sure to import the support version of the SearchView
+import android.support.v7.widget.SearchView;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,17 +21,20 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.simpletweets.Fragment.ComposeFragment;
 import com.codepath.apps.simpletweets.Fragment.HomeTimelineFragment;
 import com.codepath.apps.simpletweets.Fragment.MentionTimelineFragment;
+import com.codepath.apps.simpletweets.models.Tweet;
 import com.codepath.apps.simpletweets.models.User;
+import com.codepath.apps.simpletweets.utils.Utils;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements ComposeFragment.ComposeFragmentListner{
 
     private TwitterClient client;
     private User currentUser;
+    private HomeTimelineFragment homeTimelineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +95,9 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.d("debug",json.toString());
 
                 currentUser = User.fromJSON(json);
+
                 Utils.profileImageUrl = currentUser.getProfileImageUrl();
-                Utils.screenName = currentUser.getScreenName();
+                Utils.screenName = currentUser.getScreenDisplayName();
             }
 
             // failure
@@ -104,10 +112,33 @@ public class TimelineActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_timeline, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // perform query here
+                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.putExtra("query", query);
+                startActivity(i);
+
+                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
+                // see https://code.google.com/p/android/issues/detail?id=24599
+                searchView.clearFocus();
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
         return true;
     }
-
-
     public void onProfileView(MenuItem mi){
         //launch profile view
         Intent i = new Intent(this, ProfileActivity.class);
@@ -127,7 +158,10 @@ public class TimelineActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if(position==0)
-                return new HomeTimelineFragment();
+            {
+                homeTimelineFragment = new HomeTimelineFragment();
+                return homeTimelineFragment;
+            }
             else if(position==1)
                 return new MentionTimelineFragment();
             else
@@ -143,5 +177,44 @@ public class TimelineActivity extends AppCompatActivity {
         public int getCount() {
             return tabTitles.length;
         }
+    }
+
+    @Override
+    public void onFinishComposeDialog(String post) {
+        client.postUpdate(post, new JsonHttpResponseHandler(){
+            // success
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
+                Log.d("debug",json.toString());
+
+                Tweet newT = Tweet.fromJSON(json);
+                homeTimelineFragment.addPost(newT);
+            }
+
+            // failure
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("debug",errorResponse.toString());
+            }
+        });
+    }
+
+    public void onFinishComposeDialog(String post, Long replyToId) {
+        client.postUpdate(post,replyToId, new JsonHttpResponseHandler(){
+            // success
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
+                Log.d("debug",json.toString());
+
+                Tweet newT = Tweet.fromJSON(json);
+                homeTimelineFragment.addPost(newT);
+            }
+
+            // failure
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Log.d("debug",errorResponse.toString());
+            }
+        });
     }
 }

@@ -31,7 +31,7 @@ public class UserTimelineFragment extends TweetsListFragment {
         super.onCreate(savedInstanceState);
         client = TwitterApplication.getRestClient();
 
-        Log.d("debug", "Home Timeline Fragment");
+        Log.d("debug", "UserTimelineFragment::OnCreate");
         populateTimeline(0);
     }
 
@@ -73,7 +73,7 @@ public class UserTimelineFragment extends TweetsListFragment {
                 }
 
                 swipeContainer.setRefreshing(false);
-                Log.d("debug", "populateTimeline Success");
+                Log.d("debug", "UserTimelineFragment::populateTimeline Success");
             }
 
             // failure

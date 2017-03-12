@@ -20,6 +20,8 @@ public class ImageTextTweetViewHolder  extends RecyclerView.ViewHolder {
     public TextView tvCreatedAt;
     public ImageView lvIamge;
     public ImageView ivBodyimage;
+    public ImageView ivReply;
+    public ImageView ivfavorite;
 
     // We also create a constructor that accepts the entire item row
     // and does the view lookups to find each subview
@@ -34,6 +36,8 @@ public class ImageTextTweetViewHolder  extends RecyclerView.ViewHolder {
         tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
         lvIamge = (ImageView) itemView.findViewById(R.id.imageView);
         ivBodyimage = (ImageView) itemView.findViewById(R.id.ivBodyimage);
+        ivReply = (ImageView) itemView.findViewById(R.id.ivReply);
+        ivfavorite = (ImageView) itemView.findViewById(R.id.ivfavorite);
 
     }
 }

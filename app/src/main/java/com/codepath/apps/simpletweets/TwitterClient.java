@@ -79,11 +79,36 @@ public class TwitterClient extends OAuthBaseClient {
 		getClient().get(apiUrl,params,handler);
 	}
 
-	//home timeline
+    public void searchTweets(String q,long maxId, AsyncHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("search/tweets.json");
+
+        // Params
+        RequestParams params = new RequestParams();
+        params.put("q",q);
+        params.put("count",25);
+        params.put("since_id",1);
+
+        // max_id
+        if(maxId!=0)
+            params.put("max_id",maxId-1);
+
+        getClient().get(apiUrl,params,handler);
+    }
+
 	public void getCurrentUserInfo(AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("account/verify_credentials.json");
 
 		getClient().get(apiUrl,handler);
+	}
+
+	public void getUserInfo(Long UserId, String screen_name, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("users/show.json");
+
+		RequestParams params = new RequestParams();
+		params.put("user_id",UserId);
+		params.put("screen_name",screen_name);
+
+		getClient().get(apiUrl,params,handler);
 	}
 
 	//compose tweet
@@ -106,6 +131,28 @@ public class TwitterClient extends OAuthBaseClient {
 		RequestParams params = new RequestParams();
 		params.put("status",post);
 		params.put("in_reply_to_status_id",replyToId);
+
+		getClient().post(apiUrl,params,handler);
+	}
+
+	//POST favorites/create
+	public void favoritePost(Long postId, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("favorites/create.json");
+
+		// Params
+		RequestParams params = new RequestParams();
+		params.put("id",postId);
+
+		getClient().post(apiUrl,params,handler);
+	}
+
+	//POST favorites/destroy
+	public void unfavoritePost(Long postId, AsyncHttpResponseHandler handler) {
+		String apiUrl = getApiUrl("favorites/destroy.json");
+
+		// Params
+		RequestParams params = new RequestParams();
+		params.put("id",postId);
 
 		getClient().post(apiUrl,params,handler);
 	}

@@ -13,11 +13,56 @@
     <RelativeLayout
         android:id="@+id/profileHeader"
         android:layout_width="match_parent"
-        android:layout_height="150dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
+        <ImageView
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/imageView"
+            android:layout_height="50dip"
+            android:layout_width="50dip"
+            android:layout_margin="2dip"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:textStyle="bold"
+            android:id="@+id/tvName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:id="@+id/tvScreenName"
+            android:textSize="10dip"
+            android:paddingTop="2dip"
+            android:paddingLeft="1dip"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tvScreenName">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvFollowingCount"
+            android:textSize="10dip"
+            android:paddingTop="2dip"
+            android:paddingLeft="1dip"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvFollowerCount"
+            android:textSize="10dip"
+            android:paddingTop="2dip"
+            android:paddingLeft="1dip"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <FrameLayout

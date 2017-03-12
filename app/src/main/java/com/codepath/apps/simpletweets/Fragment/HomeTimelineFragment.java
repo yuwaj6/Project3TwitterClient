@@ -75,6 +75,14 @@ public class HomeTimelineFragment extends TweetsListFragment  implements Compose
         });
     }
 
+    public void addPost(Tweet newT){
+        tweets.add(0, newT);
+        aTweets.notifyItemInserted(0);
+
+        // scrollToTop
+        linearLayoutManager.scrollToPosition(0);
+    }
+
     @Override
     public void onFinishComposeDialog(String post) {
         client.postUpdate(post, new JsonHttpResponseHandler(){
@@ -84,11 +92,7 @@ public class HomeTimelineFragment extends TweetsListFragment  implements Compose
                 Log.d("debug",json.toString());
 
                 Tweet newT = Tweet.fromJSON(json);
-                tweets.add(0, newT);
-                aTweets.notifyItemInserted(0);
 
-                // scrollToTop
-                linearLayoutManager.scrollToPosition(0);
             }
 
             // failure

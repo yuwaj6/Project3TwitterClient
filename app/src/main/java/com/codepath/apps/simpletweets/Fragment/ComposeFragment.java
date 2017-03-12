@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.simpletweets.R;
-import com.codepath.apps.simpletweets.Utils;
+import com.codepath.apps.simpletweets.utils.Utils;
 
 /**
  * Created by reneewu on 3/4/2017.
