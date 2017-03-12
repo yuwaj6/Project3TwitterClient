@@ -12,14 +12,18 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/appBarLayout"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:id="@+id/appBarLayout">
 
         <com.astuetz.PagerSlidingTabStrip
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="48dip"
-            android:background="?attr/colorPrimary"/>
+            app:pstsShouldExpand="true"
+            android:background="?attr/colorPrimary"
+            app:pstsUnderlineColor="@color/colorPrimay"
+            app:pstsDividerColor="@color/colorPrimay"
+            app:pstsIndicatorColor="@color/colorPrimay"
+            />
 
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.view.ViewPager

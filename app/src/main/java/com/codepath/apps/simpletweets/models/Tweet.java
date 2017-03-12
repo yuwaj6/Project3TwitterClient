@@ -365,6 +365,7 @@ public class Tweet {
     private String createdAt;
     private Entities entities;
     private Boolean favorited;
+    //favorite_count
 
     public String getBody() {
         return body;

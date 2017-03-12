@@ -19,8 +19,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView"
-        android:layout_height="100dip"
-        android:layout_width="100dip" />
+        android:layout_height="50dip"
+        android:layout_width="50dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,6 +31,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView"
+        android:textSize="15dip"
+        android:textStyle="bold"
         android:id="@+id/tvName" />
 
     <TextView
@@ -42,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:id="@+id/tvBody"
+        android:textSize="20dip"
         android:autoLink="all"
         android:linksClickable="true" />
 
@@ -58,12 +64,34 @@
         android:layout_below="@+id/ivBodyImage"
         android:id="@+id/tvCreatedAt"/>
 
-    <ImageView
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="5dip"
         android:layout_below="@+id/tvCreatedAt"
-        app:srcCompat="@drawable/ic_reply"
-        android:id="@+id/ivReply"
-        android:layout_height="30dip"
-        android:layout_width="30dip" />
+        android:paddingTop="5dip"
+        android:background="#aab8c2"
+        android:id="@+id/line"/>
+
+    <LinearLayout
+        android:id="@+id/action"
+        android:layout_below="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dip"
+        android:orientation="horizontal">
+        <ImageView
+            app:srcCompat="@drawable/ic_reply"
+            android:id="@+id/ivReply"
+            android:layout_height="20dip"
+            android:layout_width="20dip" />
+        <ImageView
+            app:srcCompat="@drawable/ic_favorite"
+            android:id="@+id/ivfavorite"
+            android:layout_height="20dip"
+            android:layout_width="20dip"
+            android:layout_marginLeft="100dip"/>
+    </LinearLayout>
 
 </RelativeLayout>
 </ScrollView>

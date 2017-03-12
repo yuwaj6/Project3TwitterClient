@@ -78,7 +78,8 @@
                 app:srcCompat="@drawable/ic_favorite"
                 android:id="@+id/ivfavorite"
                 android:layout_height="20dip"
-                android:layout_width="20dip" />
+                android:layout_width="20dip"
+                android:layout_marginLeft="100dip" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -88,6 +89,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="5dip"
         android:paddingTop="5dip"
-        android:background="#cecece" />
+        android:background="#aab8c2" />
 </RelativeLayout>
 

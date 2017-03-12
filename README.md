@@ -2,7 +2,7 @@
 
 Simple Tweet is an android app that allows a user to view home and mentions timelines, view user profiles with user timelines, as well as compose and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: 10 hours spent in total
+Time spent: 12 hours spent in total
 
 ## User Stories
 
@@ -28,8 +28,8 @@ The following **optional** features are implemented:
   * [x] The user that wrote the original tweet is automatically "@" replied in compose
 * [x] User can click on a tweet to be **taken to a "detail view"** of that tweet
  * [x] User can take favorite (and unfavorite) action on a tweet
-* [ ] Improve the user interface and theme the app to feel twitter branded
-* [ ] User can **search for tweets matching a particular query** and see results
+* [x] Improve the user interface and theme the app to feel twitter branded
+* [x] User can **search for tweets matching a particular query** and see results
 * [x] Usernames and hashtags are styled and clickable within tweets [using clickable spans](http://guides.codepath.com/android/Working-with-the-TextView#creating-clickable-styled-spans)
 
 The following **bonus** features are implemented:
@@ -47,7 +47,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/d5IigoD.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/ejDBvDL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

@@ -38,8 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         client = TwitterApplication.getRestClient();
 
-        if(userId!=0){
-            client.getUserInfo(userId,screenName,new JsonHttpResponseHandler(){
+        if(screenName!=""){
+            client.getUserInfo(screenName,new JsonHttpResponseHandler(){
                 // success
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
@@ -78,7 +78,6 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void populateProfileHeader(User user){

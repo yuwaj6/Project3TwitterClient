@@ -6,12 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-// Make sure to import the support version of the SearchView
-import android.support.v7.widget.SearchView;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +25,8 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
+
+// Make sure to import the support version of the SearchView
 
 public class TimelineActivity extends AppCompatActivity implements ComposeFragment.ComposeFragmentListner{
 
@@ -113,36 +111,12 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_timeline, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // perform query here
-                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
-                i.putExtra("query", query);
-                startActivity(i);
-
-                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
-                // see https://code.google.com/p/android/issues/detail?id=24599
-                searchView.clearFocus();
-
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
-
-
         return true;
     }
     public void onProfileView(MenuItem mi){
         //launch profile view
         Intent i = new Intent(this, ProfileActivity.class);
-
+        i.putExtra("screen_name", Utils.screenName.substring(1));
         startActivity(i);
     }
 
@@ -216,5 +190,11 @@ public class TimelineActivity extends AppCompatActivity implements ComposeFragme
                 Log.d("debug",errorResponse.toString());
             }
         });
+    }
+
+    public void showSearchView(MenuItem mi){
+        Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+        //i.putExtra("query", query);
+        startActivity(i);
     }
 }

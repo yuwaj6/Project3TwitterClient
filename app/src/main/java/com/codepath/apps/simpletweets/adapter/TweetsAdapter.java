@@ -162,15 +162,18 @@ public class TweetsAdapter extends
 
         // Style clickable spans based on pattern
         new PatternEditableBuilder().
-                addPattern(Pattern.compile("\\@(\\w+)"),Color.BLUE,
+                addPattern(Pattern.compile("\\@(\\w+)"),Color.parseColor("#00aced"),
                         new PatternEditableBuilder.SpannableClickedListener() {
                             @Override
                             public void onSpanClicked(String text) {
-                                Toast.makeText(getContext(), "Clicked username: " + text,
-                                        Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Clicked username: " + text,
+                                //        Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getContext(), ProfileActivity.class);
+                                i.putExtra("screen_name", text.substring(1));
+                                getContext().startActivity(i);
                             }
                         }).
-                addPattern(Pattern.compile("\\#(\\w+)"), Color.BLUE,
+                addPattern(Pattern.compile("\\#(\\w+)"), Color.parseColor("#00aced"),
                         new PatternEditableBuilder.SpannableClickedListener() {
                             @Override
                             public void onSpanClicked(String text) {
@@ -194,15 +197,18 @@ public class TweetsAdapter extends
 
         // Style clickable spans based on pattern
         new PatternEditableBuilder().
-                addPattern(Pattern.compile("\\@(\\w+)"),Color.BLUE,
+                addPattern(Pattern.compile("\\@(\\w+)"),Color.parseColor("#00aced"),
                         new PatternEditableBuilder.SpannableClickedListener() {
                             @Override
                             public void onSpanClicked(String text) {
-                                Toast.makeText(getContext(), "Clicked username: " + text,
-                                        Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Clicked username: " + text,
+                                //        Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getContext(), ProfileActivity.class);
+                                i.putExtra("screen_name", text.substring(1));
+                                getContext().startActivity(i);
                             }
                         }).
-                addPattern(Pattern.compile("\\#(\\w+)"), Color.BLUE,
+                addPattern(Pattern.compile("\\#(\\w+)"), Color.parseColor("#00aced"),
                         new PatternEditableBuilder.SpannableClickedListener() {
                             @Override
                             public void onSpanClicked(String text) {
